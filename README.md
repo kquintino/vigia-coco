@@ -1,6 +1,23 @@
 # Vigia Cocó
 
-Projeto da disciplina F054 — Fundamentos de IoT (Unifor). O protótipo simula um ponto de monitoramento no Parque Estadual do Cocó. O ESP32 lê temperatura e nível de gás no Wokwi, acende um LED quando detecta uma alteração persistente e envia leituras por MQTT. O Node-RED exibe os dados e registra o histórico em CSV.
+Projeto da disciplina F054 — Fundamentos de IoT (Unifor). O protótipo simula um ponto de monitoramento no Parque Estadual do Cocó. O ESP32 lê a temperatura com um DHT22, gera valores simulados de gás e envia a telemetria por MQTT. O firmware aciona um LED e um buzzer quando a temperatura passa de 40 °C ou o valor simulado de gás passa de 3000. O painel e o histórico em CSV fazem parte da integração prevista com o Node-RED.
+
+## Protótipo e teste MQTT
+
+- [Abrir a simulação no Wokwi](https://wokwi.com/projects/480257348498411521)
+- [Abrir o MQTTX Web](https://mqttx.app/web-client)
+- [Consultar o PDF com as evidências dos testes MQTT](docs/comunicacao-mqtt-prototipo.pdf)
+- [Ver firmware, circuito e bibliotecas](wokwi/)
+
+Com a simulação executando, use um cliente MQTT que aceite TCP para conectar a `broker.hivemq.com:1883` e assine `parquecoco/ponto1/#`. No firmware desta versão, `parquecoco/ponto1/temperatura` recebe um JSON com os campos `ponto`, `temperatura` e `gas`. O tópico `parquecoco/ponto1/alerta` recebe uma mensagem de texto.
+
+Para testar apenas o envio e recebimento de JSON pelo navegador, abra duas abas do MQTTX Web, conecte ambas a `wss://broker.emqx.io:8084/mqtt` com IDs de cliente diferentes e escolha um tópico de teste exclusivo. Assine o tópico em uma aba e publique o exemplo abaixo na outra. Esse teste usa um broker separado da simulação.
+
+```json
+{"ponto": "1", "temperatura": 38.5, "gas": 2900}
+```
+
+[Documentação do MQTTX Web](https://mqttx.app/ja/docs/web/get-started) · [Configuração do broker de teste EMQX](https://www.emqx.com/en/mqtt/public-mqtt5-broker)
 
 ## Entregas da equipe
 
