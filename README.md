@@ -4,7 +4,7 @@ Projeto da disciplina F054 — Fundamentos de IoT (Unifor). O protótipo simula 
 
 ## Protótipo e teste MQTT
 
-- [Abrir a simulação no Wokwi](https://wokwi.com/projects/480257348498411521)
+- [Abrir a simulação corrigida no Wokwi](https://wokwi.com/projects/480508470512133121)
 - [Abrir o MQTTX Web](https://mqttx.app/web-client)
 - [Consultar o PDF com as evidências dos testes MQTT](docs/comunicacao-mqtt-prototipo.pdf)
 - [Ver firmware, circuito e bibliotecas](wokwi/)
