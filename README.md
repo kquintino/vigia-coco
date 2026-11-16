@@ -1,6 +1,12 @@
 # Vigia Cocó
 
-Projeto da disciplina F054 — Fundamentos de IoT (Unifor). O protótipo simula um ponto de monitoramento no Parque Estadual do Cocó. O ESP32 lê a temperatura com um DHT22, gera valores simulados de gás e envia a telemetria por MQTT. O firmware aciona um LED e um buzzer quando a temperatura passa de 40 °C ou o valor simulado de gás passa de 3000. O painel e o histórico em CSV fazem parte da integração prevista com o Node-RED.
+Projeto da disciplina F054 — Fundamentos de IoT (Unifor). O protótipo simula um ponto de monitoramento no Parque Estadual do Cocó. O ESP32 lê a temperatura com um DHT22, gera valores simulados de gás e envia a telemetria por MQTT. O firmware aciona um LED e um buzzer quando a temperatura passa de 40 °C ou o valor simulado de gás passa de 3000. O Node-RED recebe as leituras e os avisos, atualiza os indicadores e gráficos e grava o histórico em CSV.
+
+## Demonstração e arquivos do projeto
+
+- [Vídeo de demonstração](https://youtu.be/yHl4DS8ATgY)
+- [Painel Node-RED e instruções de execução](node-red/)
+- [CSV com 40 leituras do teste integrado Wokwi → HiveMQ → Node-RED](dados/leituras-integracao-wokwi.csv)
 
 ## Protótipo e teste MQTT
 
