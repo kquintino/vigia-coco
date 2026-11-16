@@ -4,7 +4,7 @@ Projeto da disciplina F054 — Fundamentos de IoT (Unifor). O protótipo simula 
 
 ## Demonstração e arquivos do projeto
 
-- [Vídeo de demonstração]([https://youtu.be/yHl4DS8ATgY](https://youtu.be/X5hsvdJH--U?si=-LPH6zRkSxOZ79KV))
+- [Vídeo de demonstração](https://youtu.be/X5hsvdJH--U?si=-LPH6zRkSxOZ79KV)
 - [Painel Node-RED e instruções de execução](node-red/)
 - [CSV com 40 leituras do teste integrado Wokwi → HiveMQ → Node-RED](dados/leituras-integracao-wokwi.csv)
 
