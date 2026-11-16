@@ -4,7 +4,7 @@ Projeto da disciplina F054 — Fundamentos de IoT (Unifor). O protótipo simula 
 
 ## Demonstração e arquivos do projeto
 
-- [Vídeo de demonstração](https://youtu.be/yHl4DS8ATgY)
+- [Vídeo de demonstração]([https://youtu.be/yHl4DS8ATgY](https://youtu.be/X5hsvdJH--U?si=-LPH6zRkSxOZ79KV))
 - [Painel Node-RED e instruções de execução](node-red/)
 - [CSV com 40 leituras do teste integrado Wokwi → HiveMQ → Node-RED](dados/leituras-integracao-wokwi.csv)
 
@@ -36,7 +36,6 @@ Para testar apenas o envio e recebimento de JSON pelo navegador, abra duas abas 
 | 5 | CSV com pelo menos 20 leituras simuladas e evidências dos testes | `dados/` e `docs/testes.md` |
 | 6 | Capturas e links do Wokwi e do vídeo | `docs/` |
 
-Criem cada pasta ao enviar o primeiro arquivo. Antes de montar o firmware e o painel, combinem o tópico e o formato JSON em `docs/mqtt.md`. Usem o mesmo tópico para acompanhar as leituras ao vivo e compartilhem o CSV para que todos possam consultar o histórico.
 
 ## Como contribuir
 
