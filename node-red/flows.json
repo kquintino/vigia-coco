@@ -1,0 +1,1572 @@
+[
+    {
+        "id": "55951030493c4ea8",
+        "type": "tab",
+        "label": "Vigia Cocó · Painel e histórico",
+        "disabled": false,
+        "info": "# Vigia Cocó · Parte 4 (painel e histórico)\n\nRecebe por MQTT as leituras do ESP32 simulado no Wokwi, mostra no painel e grava em CSV.\n\n1. **Entrada**: MQTT In, conversão para JSON, padronização dos campos e regra de alerta.\n2. **Painel**: indicador do ponto, medidores, dois gráficos e aviso automático.\n3. **Histórico**: grava cada leitura no CSV (um único cabeçalho) e mostra o que está gravado.\n\nPainel: http://localhost:1880/dashboard\n\nLimites e quantidade de leituras seguidas: nó **Regra de alerta**.\nBroker e tópicos: nós **Telemetria do ESP32** e **Aviso do ESP32**.",
+        "env": []
+    },
+    {
+        "id": "e2e53e93fc7d2517",
+        "type": "tab",
+        "label": "Simulador (teste sem o Wokwi)",
+        "disabled": false,
+        "info": "# Simulador\n\nPublica leituras de teste nos **mesmos tópicos do ESP32**, no mesmo formato do firmware.\nServe para validar o painel sem abrir o Wokwi.\n\nNão use com o Wokwi ligado: as leituras se misturam e também vão para o CSV.",
+        "env": []
+    },
+    {
+        "id": "07f7925e2f72ae2a",
+        "type": "group",
+        "z": "55951030493c4ea8",
+        "name": "1 · Entrada: recebe as leituras por MQTT, padroniza os campos e aplica a regra de alerta",
+        "style": {
+            "label": true,
+            "stroke": "#1f6f54",
+            "fill": "#1f6f54",
+            "fill-opacity": "0.08",
+            "color": "#17362f"
+        },
+        "nodes": [
+            "99e8385c03157ace",
+            "6e622637172f132c",
+            "a6716bdfebd7d876",
+            "f0a45377901878cc",
+            "66f1e085416f4010",
+            "241f63803d5f67da",
+            "73ec468907f76a53",
+            "fb41d3b6d983bfc7",
+            "4d1660c451d8d024",
+            "c692052e4226faf7",
+            "676596d2687ac6d5",
+            "f09eded30b7ab145",
+            "42e43afd57810d19"
+        ],
+        "x": 34,
+        "y": 79,
+        "w": 1262,
+        "h": 302
+    },
+    {
+        "id": "354ecc20269a8f26",
+        "type": "group",
+        "z": "55951030493c4ea8",
+        "name": "2 · Painel: indicador do ponto, medidores, gráficos e aviso automático",
+        "style": {
+            "label": true,
+            "stroke": "#2a78d6",
+            "fill": "#2a78d6",
+            "fill-opacity": "0.08",
+            "color": "#17362f"
+        },
+        "nodes": [
+            "7ca4c4c2b246f902",
+            "55008c36a684fe38",
+            "9e4b8083c91431d5",
+            "7e34672e9f5e438b",
+            "c40b803206da1077",
+            "9432d803aaa39b07",
+            "8ce6d2a24b18b858",
+            "790591abf83633f4",
+            "625e5c0ad5383cde",
+            "b7054c5b7d341634",
+            "7ca968629cb0d288",
+            "c7f4851d35943930"
+        ],
+        "x": 39,
+        "y": 439,
+        "w": 957,
+        "h": 462
+    },
+    {
+        "id": "9e56fbeeb4f5c18c",
+        "type": "group",
+        "z": "55951030493c4ea8",
+        "name": "3 · Histórico: grava cada leitura no CSV (um único cabeçalho) e mostra o que está gravado",
+        "style": {
+            "label": true,
+            "stroke": "#b26a00",
+            "fill": "#b26a00",
+            "fill-opacity": "0.08",
+            "color": "#17362f"
+        },
+        "nodes": [
+            "ac787a51f8d03ddd",
+            "4ba0106737e44ac7",
+            "b9330cf248e01ebf",
+            "d048fbd363b0fa0b",
+            "8d82c984f1f0a94a",
+            "408af3efa19a87fd",
+            "3637d158499f51cd",
+            "5b47c0c1c61a0fe4",
+            "aa3d46a048801da6",
+            "deb41a3f19998679",
+            "9d39a78924b98fb8",
+            "6c3383abd75acab7",
+            "d2fbb67902ee2a0f"
+        ],
+        "x": 24,
+        "y": 949,
+        "w": 1722,
+        "h": 262
+    },
+    {
+        "id": "a70d54fb3a7eb51a",
+        "type": "mqtt-broker",
+        "name": "HiveMQ público (o mesmo do firmware)",
+        "broker": "broker.hivemq.com",
+        "port": "1883",
+        "clientid": "",
+        "autoConnect": true,
+        "usetls": false,
+        "protocolVersion": "4",
+        "keepalive": "60",
+        "cleansession": true,
+        "autoUnsubscribe": true,
+        "birthTopic": "",
+        "birthQos": "0",
+        "birthRetain": "false",
+        "birthPayload": "",
+        "birthMsg": {},
+        "closeTopic": "",
+        "closeQos": "0",
+        "closeRetain": "false",
+        "closePayload": "",
+        "closeMsg": {},
+        "willTopic": "",
+        "willQos": "0",
+        "willRetain": "false",
+        "willPayload": "",
+        "willMsg": {},
+        "userProps": "",
+        "sessionExpiry": ""
+    },
+    {
+        "id": "6f0ecf8369828f48",
+        "type": "ui-base",
+        "name": "Vigia Cocó",
+        "path": "/dashboard",
+        "appIcon": "",
+        "includeClientData": true,
+        "acceptsClientConfig": [
+            "ui-notification",
+            "ui-control"
+        ],
+        "showPathInSidebar": false,
+        "headerContent": "page",
+        "navigationStyle": "none",
+        "titleBarStyle": "default",
+        "showReconnectNotification": true,
+        "notificationDisplayTime": 1,
+        "showDisconnectNotification": true,
+        "allowInstall": false
+    },
+    {
+        "id": "cfa54eab9546bdc2",
+        "type": "ui-theme",
+        "name": "Tema Vigia Cocó",
+        "colors": {
+            "surface": "#17362f",
+            "primary": "#1f6f54",
+            "bgPage": "#f3f5f2",
+            "groupBg": "#ffffff",
+            "groupOutline": "#d5dcd7"
+        },
+        "sizes": {
+            "density": "default",
+            "pagePadding": "12px",
+            "groupGap": "12px",
+            "groupBorderRadius": "6px",
+            "widgetGap": "12px"
+        }
+    },
+    {
+        "id": "ddfa7e379dee0cd9",
+        "type": "ui-page",
+        "name": "Vigia Cocó · Monitoramento de foco de incêndio",
+        "ui": "6f0ecf8369828f48",
+        "path": "/vigia-coco",
+        "icon": "pine-tree",
+        "layout": "grid",
+        "theme": "cfa54eab9546bdc2",
+        "breakpoints": [
+            {
+                "name": "Default",
+                "px": "0",
+                "cols": "3"
+            },
+            {
+                "name": "Tablet",
+                "px": "576",
+                "cols": "6"
+            },
+            {
+                "name": "Small Desktop",
+                "px": "768",
+                "cols": "9"
+            },
+            {
+                "name": "Desktop",
+                "px": "1024",
+                "cols": "12"
+            }
+        ],
+        "order": 1,
+        "className": "",
+        "visible": "true",
+        "disabled": "false"
+    },
+    {
+        "id": "d87ec93db49f7055",
+        "type": "ui-group",
+        "name": "Ponto monitorado",
+        "page": "ddfa7e379dee0cd9",
+        "width": "4",
+        "height": "1",
+        "order": 1,
+        "showTitle": true,
+        "className": "",
+        "visible": "true",
+        "disabled": "false",
+        "groupType": "default"
+    },
+    {
+        "id": "fbc76eb081c8201b",
+        "type": "ui-group",
+        "name": "Leitura atual",
+        "page": "ddfa7e379dee0cd9",
+        "width": "8",
+        "height": "1",
+        "order": 2,
+        "showTitle": true,
+        "className": "",
+        "visible": "true",
+        "disabled": "false",
+        "groupType": "default"
+    },
+    {
+        "id": "cc433d2062ec2758",
+        "type": "ui-group",
+        "name": "Temperatura do ar (°C)",
+        "page": "ddfa7e379dee0cd9",
+        "width": "6",
+        "height": "1",
+        "order": 3,
+        "showTitle": true,
+        "className": "",
+        "visible": "true",
+        "disabled": "false",
+        "groupType": "default"
+    },
+    {
+        "id": "e5af3c9abc7f2dc3",
+        "type": "ui-group",
+        "name": "Nível de gás (leitura do ADC)",
+        "page": "ddfa7e379dee0cd9",
+        "width": "6",
+        "height": "1",
+        "order": 4,
+        "showTitle": true,
+        "className": "",
+        "visible": "true",
+        "disabled": "false",
+        "groupType": "default"
+    },
+    {
+        "id": "ec1134230690cf9c",
+        "type": "ui-group",
+        "name": "Histórico gravado em CSV",
+        "page": "ddfa7e379dee0cd9",
+        "width": "12",
+        "height": "1",
+        "order": 5,
+        "showTitle": true,
+        "className": "",
+        "visible": "true",
+        "disabled": "false",
+        "groupType": "default"
+    },
+    {
+        "id": "99e8385c03157ace",
+        "type": "mqtt in",
+        "z": "55951030493c4ea8",
+        "g": "07f7925e2f72ae2a",
+        "name": "Telemetria do ESP32",
+        "topic": "parquecoco/ponto1/temperatura",
+        "qos": "0",
+        "datatype": "utf8",
+        "broker": "a70d54fb3a7eb51a",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 170,
+        "y": 120,
+        "wires": [
+            [
+                "6e622637172f132c"
+            ]
+        ]
+    },
+    {
+        "id": "6e622637172f132c",
+        "type": "json",
+        "z": "55951030493c4ea8",
+        "g": "07f7925e2f72ae2a",
+        "name": "Converter em objeto JSON",
+        "property": "payload",
+        "action": "obj",
+        "pretty": false,
+        "x": 410,
+        "y": 120,
+        "wires": [
+            [
+                "a6716bdfebd7d876"
+            ]
+        ]
+    },
+    {
+        "id": "a6716bdfebd7d876",
+        "type": "function",
+        "z": "55951030493c4ea8",
+        "g": "07f7925e2f72ae2a",
+        "name": "Padronizar leitura",
+        "func": "// PADRONIZAR A LEITURA\n// Aceita os dois formatos de JSON que existem no projeto:\n//   firmware atual ...... {\"ponto\":\"1\",\"temperatura\":24.5,\"gas\":573}\n//   contrato do guia .... {\"ponto\":\"ponto01\",\"ts\":\"2026-11-20T21:00:00Z\",\"temp_c\":38.5,\"gas_adc\":2900,\"estado\":\"alerta\"}\n// A saída usa sempre os nomes do guia: ponto, ts, temp_c, gas_adc (e estado, só se o firmware enviar).\n\nfunction numero(v) {\n    if (typeof v === 'number') { return v; }\n    if (typeof v === 'string' && v.trim() !== '') { return Number(v); }\n    return NaN;\n}\n\nconst p = msg.payload;\nif (p === null || typeof p !== 'object' || Array.isArray(p)) {\n    node.warn('Mensagem ignorada: o payload não é um objeto JSON.');\n    return null;\n}\n\nconst temp = numero(p.temp_c !== undefined ? p.temp_c : p.temperatura);\nconst gas = numero(p.gas_adc !== undefined ? p.gas_adc : p.gas);\n\n// O broker é público: qualquer pessoa pode publicar neste tópico.\n// Só passam valores que os sensores conseguem medir (DHT22 e ADC de 12 bits do ESP32).\nif (!(temp >= -40 && temp <= 125) || !(gas >= 0 && gas <= 4095)) {\n    node.warn('Leitura ignorada (temperatura ou gás ausente/fora da faixa): ' + JSON.stringify(p));\n    return null;\n}\n\n// Identificador do ponto: \"1\" vira \"ponto1\", igual ao nome usado no tópico.\nlet ponto = String(p.ponto === undefined || p.ponto === null ? '' : p.ponto).trim();\nif (ponto === '') {\n    const partes = String(msg.topic || '').split('/');\n    ponto = partes.length >= 2 ? partes[partes.length - 2] : '';\n}\nif (/^\\d+$/.test(ponto)) { ponto = 'ponto' + ponto; }\nponto = ponto.replace(/[^A-Za-z0-9_-]/g, '').slice(0, 32) || 'ponto';\n\n// Horário da leitura em UTC. O firmware atual não envia \"ts\",\n// então vale o instante em que a mensagem chegou ao Node-RED.\nlet quando = new Date();\nif (typeof p.ts === 'string') {\n    const enviado = new Date(p.ts);\n    if (!isNaN(enviado.getTime()) && enviado.getUTCFullYear() >= 2020) { quando = enviado; }\n}\n\nconst leitura = {\n    ponto: ponto,\n    ts: quando.toISOString().replace(/\\.\\d{3}Z$/, 'Z'),\n    temp_c: Math.round(temp * 100) / 100,\n    gas_adc: Math.round(gas)\n};\nif (['normal', 'alerta', 'prioridade_alta'].includes(p.estado)) { leitura.estado = p.estado; }\n\nmsg.payload = leitura;\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 650,
+        "y": 120,
+        "wires": [
+            [
+                "f0a45377901878cc"
+            ]
+        ]
+    },
+    {
+        "id": "f0a45377901878cc",
+        "type": "function",
+        "z": "55951030493c4ea8",
+        "g": "07f7925e2f72ae2a",
+        "name": "Regra de alerta",
+        "func": "// REGRA AUTOMÁTICA DE ALERTA (guia da equipe, página 4)\n//   - 3 leituras seguidas com gás ACIMA do limite ......... estado \"alerta\"\n//   - em alerta, temperatura ACIMA do limite .............. estado \"prioridade_alta\"\n//   - 3 leituras seguidas com gás no limite ou abaixo ..... volta para \"normal\"\n//   - um pico isolado não muda o estado: a contagem recomeça quando a sequência é interrompida\n// Se o firmware já enviar o campo \"estado\", o painel só acompanha o estado do firmware.\n\nconst LIMITE_GAS = 3000;       // contagens do ADC (mesmo valor do firmware)\nconst LIMITE_TEMP = 40;        // graus Celsius (mesmo valor do firmware)\nconst LEITURAS_SEGUIDAS = 3;   // leituras seguidas para confirmar ou encerrar o alerta\n\nconst l = msg.payload;\nlet pontos = context.get('pontos') || {};\nif (!pontos[l.ponto] && Object.keys(pontos).length >= 50) { pontos = {}; }\nconst s = pontos[l.ponto] || { emAlerta: false, altas: 0, baixas: 0, estado: 'normal' };\nconst estadoAnterior = s.estado;\n\nif (l.estado) {\n    s.emAlerta = l.estado !== 'normal';\n    s.altas = 0;\n    s.baixas = 0;\n    msg.origemEstado = 'firmware';\n} else {\n    if (l.gas_adc > LIMITE_GAS) {\n        s.altas += 1;\n        s.baixas = 0;\n    } else {\n        s.baixas += 1;\n        s.altas = 0;\n    }\n    if (!s.emAlerta && s.altas >= LEITURAS_SEGUIDAS) { s.emAlerta = true; }\n    if (s.emAlerta && s.baixas >= LEITURAS_SEGUIDAS) { s.emAlerta = false; }\n\n    if (!s.emAlerta) {\n        l.estado = 'normal';\n    } else if (l.temp_c > LIMITE_TEMP) {\n        l.estado = 'prioridade_alta';\n    } else {\n        l.estado = 'alerta';\n    }\n    msg.origemEstado = 'painel';\n}\n\ns.estado = l.estado;\npontos[l.ponto] = s;\ncontext.set('pontos', pontos);\n\nmsg.estadoAnterior = estadoAnterior;\nmsg.limites = { gas: LIMITE_GAS, temp: LIMITE_TEMP };\n\nconst cores = { normal: 'green', alerta: 'yellow', prioridade_alta: 'red' };\nnode.status({ fill: cores[l.estado], shape: 'dot', text: l.ponto + ': ' + l.estado + ' | gás ' + l.gas_adc + ' | ' + l.temp_c + ' °C' });\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 870,
+        "y": 120,
+        "wires": [
+            [
+                "66f1e085416f4010",
+                "241f63803d5f67da"
+            ]
+        ]
+    },
+    {
+        "id": "66f1e085416f4010",
+        "type": "link out",
+        "z": "55951030493c4ea8",
+        "g": "07f7925e2f72ae2a",
+        "name": "leitura pronta",
+        "mode": "link",
+        "links": [
+            "9e4b8083c91431d5",
+            "ac787a51f8d03ddd"
+        ],
+        "x": 1085,
+        "y": 120,
+        "wires": [],
+        "l": true
+    },
+    {
+        "id": "241f63803d5f67da",
+        "type": "debug",
+        "z": "55951030493c4ea8",
+        "g": "07f7925e2f72ae2a",
+        "name": "Leitura pronta (aba Debug)",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1130,
+        "y": 180,
+        "wires": []
+    },
+    {
+        "id": "73ec468907f76a53",
+        "type": "ui-text",
+        "z": "55951030493c4ea8",
+        "g": "07f7925e2f72ae2a",
+        "group": "d87ec93db49f7055",
+        "order": 3,
+        "width": "4",
+        "height": "1",
+        "name": "Último aviso do ESP32",
+        "label": "Último aviso do ESP32",
+        "format": "{{msg.payload}}",
+        "layout": "row-spread",
+        "style": false,
+        "font": "",
+        "fontSize": 16,
+        "color": "#717171",
+        "wrapText": false,
+        "className": "",
+        "value": "payload",
+        "valueType": "msg",
+        "x": 700,
+        "y": 220,
+        "wires": []
+    },
+    {
+        "id": "fb41d3b6d983bfc7",
+        "type": "function",
+        "z": "55951030493c4ea8",
+        "g": "07f7925e2f72ae2a",
+        "name": "Formatar aviso",
+        "func": "// AVISO DO PRÓPRIO ESP32\n// O firmware publica este texto no tópico de alerta no mesmo instante em que liga o LED e o buzzer.\n// Aqui só acrescentamos a hora em que o aviso chegou.\nconst hora = new Date().toLocaleTimeString('pt-BR');\nmsg.payload = hora + ' · ' + String(msg.payload).slice(0, 120);\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 440,
+        "y": 220,
+        "wires": [
+            [
+                "73ec468907f76a53"
+            ]
+        ]
+    },
+    {
+        "id": "4d1660c451d8d024",
+        "type": "mqtt in",
+        "z": "55951030493c4ea8",
+        "g": "07f7925e2f72ae2a",
+        "name": "Aviso do ESP32 (LED e buzzer)",
+        "topic": "parquecoco/ponto1/alerta",
+        "qos": "0",
+        "datatype": "utf8",
+        "broker": "a70d54fb3a7eb51a",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 200,
+        "y": 220,
+        "wires": [
+            [
+                "fb41d3b6d983bfc7"
+            ]
+        ]
+    },
+    {
+        "id": "c692052e4226faf7",
+        "type": "inject",
+        "z": "55951030493c4ea8",
+        "g": "07f7925e2f72ae2a",
+        "name": "Ao iniciar: sem avisos",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": true,
+        "onceDelay": "0.5",
+        "topic": "",
+        "payload": "nenhum até agora",
+        "payloadType": "str",
+        "x": 190,
+        "y": 280,
+        "wires": [
+            [
+                "73ec468907f76a53"
+            ]
+        ]
+    },
+    {
+        "id": "676596d2687ac6d5",
+        "type": "ui-text",
+        "z": "55951030493c4ea8",
+        "g": "07f7925e2f72ae2a",
+        "group": "d87ec93db49f7055",
+        "order": 2,
+        "width": "4",
+        "height": "1",
+        "name": "Conexão com o broker",
+        "label": "Broker MQTT",
+        "format": "{{msg.payload}}",
+        "layout": "row-spread",
+        "style": false,
+        "font": "",
+        "fontSize": 16,
+        "color": "#717171",
+        "wrapText": false,
+        "className": "",
+        "value": "payload",
+        "valueType": "msg",
+        "x": 700,
+        "y": 340,
+        "wires": []
+    },
+    {
+        "id": "f09eded30b7ab145",
+        "type": "function",
+        "z": "55951030493c4ea8",
+        "g": "07f7925e2f72ae2a",
+        "name": "Traduzir status",
+        "func": "// CONEXÃO COM O BROKER\n// Traduz o status do nó MQTT (verde, amarelo ou vermelho) para um texto simples no painel.\nconst textos = { green: 'conectado', yellow: 'conectando...', red: 'desconectado' };\nconst cor = msg.status ? msg.status.fill : '';\nmsg.payload = textos[cor] || 'desconectado';\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 440,
+        "y": 340,
+        "wires": [
+            [
+                "676596d2687ac6d5"
+            ]
+        ]
+    },
+    {
+        "id": "42e43afd57810d19",
+        "type": "status",
+        "z": "55951030493c4ea8",
+        "g": "07f7925e2f72ae2a",
+        "name": "Status da conexão MQTT",
+        "scope": [
+            "99e8385c03157ace"
+        ],
+        "x": 190,
+        "y": 340,
+        "wires": [
+            [
+                "f09eded30b7ab145"
+            ]
+        ]
+    },
+    {
+        "id": "7ca4c4c2b246f902",
+        "type": "ui-gauge",
+        "z": "55951030493c4ea8",
+        "g": "354ecc20269a8f26",
+        "name": "Medidor de temperatura",
+        "group": "fbc76eb081c8201b",
+        "order": 1,
+        "value": "payload.temp_c",
+        "valueType": "msg",
+        "width": "4",
+        "height": "4",
+        "gtype": "gauge-half",
+        "gstyle": "needle",
+        "title": "Temperatura do ar",
+        "alwaysShowTitle": false,
+        "floatingTitlePosition": "top-left",
+        "units": "°C",
+        "icon": "",
+        "prefix": "",
+        "suffix": "",
+        "segments": [
+            {
+                "from": "0",
+                "color": "#0ca30c",
+                "text": "",
+                "textType": "label"
+            },
+            {
+                "from": "40",
+                "color": "#d03b3b",
+                "text": "",
+                "textType": "label"
+            }
+        ],
+        "min": 0,
+        "max": 60,
+        "sizeThickness": 16,
+        "sizeGap": 4,
+        "sizeKeyThickness": 8,
+        "styleRounded": true,
+        "styleGlow": false,
+        "className": "",
+        "x": 370,
+        "y": 600,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "55008c36a684fe38",
+        "type": "ui-gauge",
+        "z": "55951030493c4ea8",
+        "g": "354ecc20269a8f26",
+        "name": "Medidor de gás",
+        "group": "fbc76eb081c8201b",
+        "order": 2,
+        "value": "payload.gas_adc",
+        "valueType": "msg",
+        "width": "4",
+        "height": "4",
+        "gtype": "gauge-half",
+        "gstyle": "needle",
+        "title": "Nível de gás",
+        "alwaysShowTitle": false,
+        "floatingTitlePosition": "top-left",
+        "units": "ADC",
+        "icon": "",
+        "prefix": "",
+        "suffix": "",
+        "segments": [
+            {
+                "from": "0",
+                "color": "#0ca30c",
+                "text": "",
+                "textType": "label"
+            },
+            {
+                "from": "3000",
+                "color": "#d03b3b",
+                "text": "",
+                "textType": "label"
+            }
+        ],
+        "min": 0,
+        "max": 4095,
+        "sizeThickness": 16,
+        "sizeGap": 4,
+        "sizeKeyThickness": 8,
+        "styleRounded": true,
+        "styleGlow": false,
+        "className": "",
+        "x": 340,
+        "y": 650,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "9e4b8083c91431d5",
+        "type": "link in",
+        "z": "55951030493c4ea8",
+        "g": "354ecc20269a8f26",
+        "name": "leitura pronta",
+        "links": [
+            "66f1e085416f4010"
+        ],
+        "x": 135,
+        "y": 480,
+        "wires": [
+            [
+                "7e34672e9f5e438b",
+                "c40b803206da1077",
+                "7ca4c4c2b246f902",
+                "55008c36a684fe38",
+                "625e5c0ad5383cde",
+                "7ca968629cb0d288"
+            ]
+        ],
+        "l": true
+    },
+    {
+        "id": "7e34672e9f5e438b",
+        "type": "ui-template",
+        "z": "55951030493c4ea8",
+        "g": "354ecc20269a8f26",
+        "group": "d87ec93db49f7055",
+        "page": "",
+        "ui": "",
+        "name": "Indicador do ponto",
+        "order": 1,
+        "width": "4",
+        "height": "3",
+        "head": "",
+        "format": "<template>\n  <!-- INDICADOR DO PONTO: mostra o identificador do ponto e o estado atual (com cor, ícone e texto). -->\n  <div class=\"vc-indicador\" :class=\"'vc-' + estado\">\n    <v-icon class=\"vc-icone\" :icon=\"info.icone\" size=\"52\"></v-icon>\n    <div class=\"vc-textos\">\n      <div class=\"vc-ponto\">{{ ponto }}</div>\n      <div class=\"vc-estado\">{{ info.rotulo }}</div>\n      <div class=\"vc-acao\">{{ info.acao }}</div>\n      <div class=\"vc-hora\">{{ hora }}</div>\n    </div>\n  </div>\n</template>\n\n<script>\nexport default {\n  computed: {\n    // Última leitura recebida (objeto com ponto, ts, temp_c, gas_adc e estado)\n    leitura () {\n      const p = this.msg ? this.msg.payload : null\n      return (p && typeof p === 'object') ? p : null\n    },\n    estado () {\n      if (!this.leitura) { return 'aguardando' }\n      return this.leitura.estado || 'normal'\n    },\n    ponto () {\n      return this.leitura ? this.leitura.ponto : 'Ponto monitorado'\n    },\n    info () {\n      const nome = this.leitura ? this.leitura.ponto : 'ponto'\n      const estados = {\n        normal: { rotulo: 'NORMAL', icone: 'mdi-check-circle', acao: 'Sem sinal de fogo neste ponto.' },\n        alerta: { rotulo: 'ALERTA', icone: 'mdi-alert', acao: 'Gás acima do limite. Verificar o ' + nome + '.' },\n        prioridade_alta: { rotulo: 'PRIORIDADE ALTA', icone: 'mdi-fire-alert', acao: 'Gás e temperatura acima do limite. Verificar o ' + nome + ' agora.' },\n        sem_sinal: { rotulo: 'SEM SINAL', icone: 'mdi-access-point-network-off', acao: 'Nenhuma leitura nos últimos 20 segundos.' },\n        aguardando: { rotulo: 'AGUARDANDO', icone: 'mdi-timer-sand', acao: 'Nenhuma leitura recebida ainda.' }\n      }\n      return estados[this.estado] || estados.normal\n    },\n    hora () {\n      if (!this.leitura || !this.leitura.ts) { return '' }\n      const d = new Date(this.leitura.ts)\n      if (isNaN(d.getTime())) { return '' }\n      return 'Última leitura: ' + d.toLocaleTimeString('pt-BR')\n    }\n  }\n}\n</script>\n\n<style>\n.vc-indicador {\n  display: flex;\n  align-items: center;\n  gap: 16px;\n  height: 100%;\n  min-height: 132px;\n  padding: 14px 16px;\n  border-radius: 6px;\n  border-left: 8px solid var(--vc-cor);\n  background: var(--vc-fundo);\n  color: #1b1b1a;\n}\n.vc-icone { color: var(--vc-cor); flex: 0 0 auto; }\n.vc-textos { min-width: 0; }\n.vc-ponto { font-size: 14px; font-weight: 600; letter-spacing: .04em; text-transform: uppercase; color: #52514e; }\n.vc-estado { font-size: 28px; font-weight: 700; line-height: 1.15; }\n.vc-acao { font-size: 14px; margin-top: 4px; }\n.vc-hora { font-size: 12px; margin-top: 6px; color: #52514e; }\n\n.vc-normal          { --vc-cor: #0ca30c; --vc-fundo: #e9f6e9; }\n.vc-alerta          { --vc-cor: #d98e00; --vc-fundo: #fff4d9; }\n.vc-prioridade_alta { --vc-cor: #d03b3b; --vc-fundo: #fbe6e6; }\n.vc-sem_sinal,\n.vc-aguardando      { --vc-cor: #7a7975; --vc-fundo: #f0efec; }\n</style>",
+        "noerr": 0,
+        "storeOutMessages": true,
+        "passthru": false,
+        "resendOnRefresh": true,
+        "templateScope": "local",
+        "className": "",
+        "x": 870,
+        "y": 480,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "c40b803206da1077",
+        "type": "trigger",
+        "z": "55951030493c4ea8",
+        "g": "354ecc20269a8f26",
+        "name": "Sem leituras há 20 s?",
+        "op1": "",
+        "op2": "",
+        "op1type": "nul",
+        "op2type": "payl",
+        "duration": "20",
+        "extend": true,
+        "overrideDelay": false,
+        "units": "s",
+        "reset": "",
+        "bytopic": "all",
+        "topic": "topic",
+        "outputs": 1,
+        "x": 360,
+        "y": 540,
+        "wires": [
+            [
+                "9432d803aaa39b07"
+            ]
+        ]
+    },
+    {
+        "id": "9432d803aaa39b07",
+        "type": "change",
+        "z": "55951030493c4ea8",
+        "g": "354ecc20269a8f26",
+        "name": "Marcar SEM SINAL",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload.estado",
+                "pt": "msg",
+                "to": "sem_sinal",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 610,
+        "y": 540,
+        "wires": [
+            [
+                "7e34672e9f5e438b"
+            ]
+        ]
+    },
+    {
+        "id": "8ce6d2a24b18b858",
+        "type": "ui-chart",
+        "z": "55951030493c4ea8",
+        "g": "354ecc20269a8f26",
+        "group": "cc433d2062ec2758",
+        "name": "Gráfico de temperatura",
+        "label": "",
+        "order": 1,
+        "chartType": "line",
+        "category": "topic",
+        "categoryType": "msg",
+        "xAxisLabel": "",
+        "xAxisProperty": "",
+        "xAxisPropertyType": "timestamp",
+        "xAxisType": "time",
+        "xAxisFormat": "",
+        "xAxisFormatType": "auto",
+        "xmin": "",
+        "xmax": "",
+        "yAxisLabel": "",
+        "yAxisProperty": "payload",
+        "yAxisPropertyType": "msg",
+        "ymin": "0",
+        "ymax": "60",
+        "bins": 10,
+        "action": "append",
+        "stackSeries": false,
+        "pointShape": "circle",
+        "pointRadius": 3,
+        "showLegend": true,
+        "removeOlder": 1,
+        "removeOlderUnit": "3600",
+        "removeOlderPoints": "",
+        "colors": [
+            "#2a78d6",
+            "#d03b3b",
+            "#1baf7a",
+            "#eda100",
+            "#e87ba4",
+            "#008300",
+            "#6250d6",
+            "#e34948",
+            "#eb6834"
+        ],
+        "textColor": [
+            "#666666"
+        ],
+        "textColorDefault": true,
+        "gridColor": [
+            "#e5e5e5"
+        ],
+        "gridColorDefault": true,
+        "width": "6",
+        "height": "6",
+        "className": "",
+        "interpolation": "linear",
+        "x": 660,
+        "y": 700,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "790591abf83633f4",
+        "type": "ui-chart",
+        "z": "55951030493c4ea8",
+        "g": "354ecc20269a8f26",
+        "group": "e5af3c9abc7f2dc3",
+        "name": "Gráfico de gás",
+        "label": "",
+        "order": 1,
+        "chartType": "line",
+        "category": "topic",
+        "categoryType": "msg",
+        "xAxisLabel": "",
+        "xAxisProperty": "",
+        "xAxisPropertyType": "timestamp",
+        "xAxisType": "time",
+        "xAxisFormat": "",
+        "xAxisFormatType": "auto",
+        "xmin": "",
+        "xmax": "",
+        "yAxisLabel": "",
+        "yAxisProperty": "payload",
+        "yAxisPropertyType": "msg",
+        "ymin": "0",
+        "ymax": "4095",
+        "bins": 10,
+        "action": "append",
+        "stackSeries": false,
+        "pointShape": "circle",
+        "pointRadius": 3,
+        "showLegend": true,
+        "removeOlder": 1,
+        "removeOlderUnit": "3600",
+        "removeOlderPoints": "",
+        "colors": [
+            "#2a78d6",
+            "#d03b3b",
+            "#1baf7a",
+            "#eda100",
+            "#e87ba4",
+            "#008300",
+            "#6250d6",
+            "#e34948",
+            "#eb6834"
+        ],
+        "textColor": [
+            "#666666"
+        ],
+        "textColorDefault": true,
+        "gridColor": [
+            "#e5e5e5"
+        ],
+        "gridColorDefault": true,
+        "width": "6",
+        "height": "6",
+        "className": "",
+        "interpolation": "linear",
+        "x": 630,
+        "y": 750,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "625e5c0ad5383cde",
+        "type": "function",
+        "z": "55951030493c4ea8",
+        "g": "354ecc20269a8f26",
+        "name": "Séries dos gráficos",
+        "func": "// GRÁFICOS\n// Cada gráfico recebe duas séries: a medida e a linha do limite,\n// para ficar visível quando a leitura passa do limite.\n// Saída 1 = gráfico de temperatura. Saída 2 = gráfico de gás.\nconst l = msg.payload;\nconst lim = msg.limites;\n\nreturn [\n    [\n        { topic: 'Temperatura (°C)', payload: l.temp_c },\n        { topic: 'Limite (' + lim.temp + ' °C)', payload: lim.temp }\n    ],\n    [\n        { topic: 'Gás (ADC)', payload: l.gas_adc },\n        { topic: 'Limite (' + lim.gas + ')', payload: lim.gas }\n    ]\n];",
+        "outputs": 2,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 350,
+        "y": 720,
+        "wires": [
+            [
+                "8ce6d2a24b18b858"
+            ],
+            [
+                "790591abf83633f4"
+            ]
+        ]
+    },
+    {
+        "id": "b7054c5b7d341634",
+        "type": "ui-markdown",
+        "z": "55951030493c4ea8",
+        "g": "354ecc20269a8f26",
+        "group": "fbc76eb081c8201b",
+        "name": "Texto da regra (fixo)",
+        "order": 3,
+        "width": "8",
+        "height": "1",
+        "content": "**Alerta:** gás acima de 3000 em 3 leituras seguidas. **Prioridade alta:** em alerta, temperatura acima de 40 °C.",
+        "className": "",
+        "x": 650,
+        "y": 625,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "7ca968629cb0d288",
+        "type": "function",
+        "z": "55951030493c4ea8",
+        "g": "354ecc20269a8f26",
+        "name": "Aviso ao mudar de estado",
+        "func": "// AVISO AUTOMÁTICO NA TELA\n// Aparece só quando o estado MUDA (não a cada leitura) e diz qual ponto verificar.\nconst l = msg.payload;\nif (l.estado === msg.estadoAnterior) { return null; }\n\nconst textos = {\n    alerta: 'ALERTA no ' + l.ponto + ': gás acima do limite. Verificar o local.',\n    prioridade_alta: 'PRIORIDADE ALTA no ' + l.ponto + ': gás e temperatura acima do limite. Verificar o local agora.',\n    normal: 'O ' + l.ponto + ' voltou ao normal.'\n};\nconst cores = { alerta: '#fab219', prioridade_alta: '#d03b3b', normal: '#0ca30c' };\n\nreturn {\n    topic: l.ponto,\n    payload: textos[l.estado],\n    ui_update: { color: cores[l.estado] }\n};",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 370,
+        "y": 860,
+        "wires": [
+            [
+                "c7f4851d35943930"
+            ]
+        ]
+    },
+    {
+        "id": "c7f4851d35943930",
+        "type": "ui-notification",
+        "z": "55951030493c4ea8",
+        "g": "354ecc20269a8f26",
+        "ui": "6f0ecf8369828f48",
+        "position": "top right",
+        "colorDefault": false,
+        "color": "#d03b3b",
+        "displayTime": "10",
+        "showCountdown": true,
+        "outputs": 1,
+        "allowDismiss": true,
+        "dismissText": "Fechar",
+        "allowConfirm": false,
+        "confirmText": "Confirmar",
+        "raw": false,
+        "className": "",
+        "name": "Aviso na tela",
+        "x": 630,
+        "y": 860,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "ac787a51f8d03ddd",
+        "type": "link in",
+        "z": "55951030493c4ea8",
+        "g": "9e56fbeeb4f5c18c",
+        "name": "leitura pronta",
+        "links": [
+            "66f1e085416f4010"
+        ],
+        "x": 135,
+        "y": 1030,
+        "wires": [
+            [
+                "b9330cf248e01ebf"
+            ]
+        ],
+        "l": true
+    },
+    {
+        "id": "4ba0106737e44ac7",
+        "type": "inject",
+        "z": "55951030493c4ea8",
+        "g": "9e56fbeeb4f5c18c",
+        "name": "Ao iniciar o Node-RED",
+        "props": [
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": true,
+        "onceDelay": "0.5",
+        "topic": "iniciar",
+        "x": 180,
+        "y": 1100,
+        "wires": [
+            [
+                "b9330cf248e01ebf"
+            ]
+        ]
+    },
+    {
+        "id": "b9330cf248e01ebf",
+        "type": "function",
+        "z": "55951030493c4ea8",
+        "g": "9e56fbeeb4f5c18c",
+        "name": "Montar linha do CSV",
+        "func": "// HISTÓRICO EM CSV\n// Colunas pedidas no guia: ponto, ts, temp_c, gas_adc, estado (com UM único cabeçalho).\n// Arquivo: <sua pasta de usuário>/vigia-coco/leituras_vigia_coco.csv  (o painel mostra o caminho completo)\n// Para começar um CSV novo, apague ou renomeie o arquivo: ele é recriado na próxima leitura.\n// Saída 1 = linha para o nó \"Acrescentar ao CSV\". Saída 2 = só reler o que já está gravado.\n\nconst COLUNAS = ['ponto', 'ts', 'temp_c', 'gas_adc', 'estado'];\nconst arquivo = path.join(os.homedir(), 'vigia-coco', 'leituras_vigia_coco.csv');\nmsg.filename = arquivo;\n\n// Cabeçalho único: se o arquivo ainda não existe (ou está vazio), ele é criado só com o cabeçalho.\n// Depois disso o nó \"Acrescentar ao CSV\" só acrescenta linhas de leitura.\nif (!fs.existsSync(arquivo) || fs.statSync(arquivo).size === 0) {\n    fs.mkdirSync(path.dirname(arquivo), { recursive: true });\n    fs.writeFileSync(arquivo, COLUNAS.join(',') + os.EOL);\n}\n\n// Ao iniciar o Node-RED não há leitura para gravar: só relê o arquivo para preencher o painel.\nif (msg.topic === 'iniciar') {\n    return [null, msg];\n}\n\nconst l = msg.payload;\nmsg.payload = COLUNAS.map(function (coluna) { return l[coluna]; }).join(',');\nreturn [msg, null];",
+        "outputs": 2,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [
+            {
+                "var": "fs",
+                "module": "fs"
+            },
+            {
+                "var": "os",
+                "module": "os"
+            },
+            {
+                "var": "path",
+                "module": "path"
+            }
+        ],
+        "x": 400,
+        "y": 1030,
+        "wires": [
+            [
+                "d048fbd363b0fa0b"
+            ],
+            [
+                "8d82c984f1f0a94a"
+            ]
+        ]
+    },
+    {
+        "id": "d048fbd363b0fa0b",
+        "type": "file",
+        "z": "55951030493c4ea8",
+        "g": "9e56fbeeb4f5c18c",
+        "name": "Acrescentar ao CSV",
+        "filename": "filename",
+        "filenameType": "msg",
+        "appendNewline": true,
+        "createDir": true,
+        "overwriteFile": "false",
+        "encoding": "none",
+        "x": 650,
+        "y": 1000,
+        "wires": [
+            [
+                "8d82c984f1f0a94a"
+            ]
+        ]
+    },
+    {
+        "id": "8d82c984f1f0a94a",
+        "type": "file in",
+        "z": "55951030493c4ea8",
+        "g": "9e56fbeeb4f5c18c",
+        "name": "Ler o CSV gravado",
+        "filename": "filename",
+        "filenameType": "msg",
+        "format": "utf8",
+        "chunk": false,
+        "sendError": false,
+        "encoding": "none",
+        "allProps": false,
+        "x": 890,
+        "y": 1040,
+        "wires": [
+            [
+                "408af3efa19a87fd"
+            ]
+        ]
+    },
+    {
+        "id": "408af3efa19a87fd",
+        "type": "csv",
+        "z": "55951030493c4ea8",
+        "g": "9e56fbeeb4f5c18c",
+        "name": "CSV para objetos",
+        "spec": "rfc",
+        "sep": ",",
+        "hdrin": true,
+        "hdrout": "none",
+        "multi": "mult",
+        "ret": "\\n",
+        "temp": "",
+        "skip": "0",
+        "strings": true,
+        "include_empty_strings": "",
+        "include_null_values": "",
+        "x": 1110,
+        "y": 1040,
+        "wires": [
+            [
+                "deb41a3f19998679"
+            ]
+        ]
+    },
+    {
+        "id": "3637d158499f51cd",
+        "type": "ui-table",
+        "z": "55951030493c4ea8",
+        "g": "9e56fbeeb4f5c18c",
+        "group": "ec1134230690cf9c",
+        "name": "Tabela das últimas leituras",
+        "label": "Leituras mais recentes (as 10 últimas linhas do CSV)",
+        "order": 3,
+        "width": "12",
+        "height": "0",
+        "maxrows": 0,
+        "passthru": false,
+        "autocols": false,
+        "showSearch": false,
+        "deselect": true,
+        "selectionType": "none",
+        "columns": [
+            {
+                "title": "Horário (local)",
+                "key": "hora",
+                "keyType": "key",
+                "type": "text",
+                "width": "",
+                "align": "start"
+            },
+            {
+                "title": "Ponto",
+                "key": "ponto",
+                "keyType": "key",
+                "type": "text",
+                "width": "",
+                "align": "start"
+            },
+            {
+                "title": "Temperatura (°C)",
+                "key": "temp_c",
+                "keyType": "key",
+                "type": "text",
+                "width": "",
+                "align": "end"
+            },
+            {
+                "title": "Gás (ADC)",
+                "key": "gas_adc",
+                "keyType": "key",
+                "type": "text",
+                "width": "",
+                "align": "end"
+            },
+            {
+                "title": "Estado",
+                "key": "estado",
+                "keyType": "key",
+                "type": "text",
+                "width": "",
+                "align": "start"
+            }
+        ],
+        "mobileBreakpoint": "sm",
+        "mobileBreakpointType": "defaults",
+        "action": "replace",
+        "className": "",
+        "x": 1600,
+        "y": 990,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "5b47c0c1c61a0fe4",
+        "type": "ui-text",
+        "z": "55951030493c4ea8",
+        "g": "9e56fbeeb4f5c18c",
+        "group": "ec1134230690cf9c",
+        "order": 1,
+        "width": "4",
+        "height": "1",
+        "name": "Total de leituras gravadas",
+        "label": "Leituras gravadas no CSV:  ",
+        "format": "{{msg.payload}}",
+        "layout": "row-left",
+        "style": false,
+        "font": "",
+        "fontSize": 16,
+        "color": "#717171",
+        "wrapText": false,
+        "className": "",
+        "value": "payload",
+        "valueType": "msg",
+        "x": 1590,
+        "y": 1040,
+        "wires": []
+    },
+    {
+        "id": "aa3d46a048801da6",
+        "type": "ui-text",
+        "z": "55951030493c4ea8",
+        "g": "9e56fbeeb4f5c18c",
+        "group": "ec1134230690cf9c",
+        "order": 2,
+        "width": "8",
+        "height": "1",
+        "name": "Caminho do arquivo CSV",
+        "label": "Arquivo:  ",
+        "format": "{{msg.payload}}",
+        "layout": "row-left",
+        "style": false,
+        "font": "",
+        "fontSize": 16,
+        "color": "#717171",
+        "wrapText": false,
+        "className": "",
+        "value": "payload",
+        "valueType": "msg",
+        "x": 1580,
+        "y": 1090,
+        "wires": []
+    },
+    {
+        "id": "deb41a3f19998679",
+        "type": "function",
+        "z": "55951030493c4ea8",
+        "g": "9e56fbeeb4f5c18c",
+        "name": "Resumo do histórico",
+        "func": "// RESUMO DO HISTÓRICO\n// Recebe o conteúdo do CSV já convertido em objetos (uma linha = um objeto)\n// e atualiza a tabela, o contador e o caminho do arquivo no painel.\n// Saída 1 = tabela (10 leituras mais recentes). Saída 2 = total gravado. Saída 3 = caminho do arquivo.\nconst linhas = Array.isArray(msg.payload) ? msg.payload : [];\n\nfunction horaLocal(ts) {\n    const d = new Date(ts);\n    if (isNaN(d.getTime())) { return String(ts); }\n    return d.toLocaleString('pt-BR', { day: '2-digit', month: '2-digit', hour: '2-digit', minute: '2-digit', second: '2-digit' });\n}\n\nconst recentes = linhas.slice(-10).reverse().map(function (l) {\n    return { hora: horaLocal(l.ts), ponto: l.ponto, temp_c: l.temp_c, gas_adc: l.gas_adc, estado: l.estado };\n});\n\nreturn [\n    { payload: recentes },\n    { payload: linhas.length },\n    { payload: msg.filename }\n];",
+        "outputs": 3,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1330,
+        "y": 1040,
+        "wires": [
+            [
+                "3637d158499f51cd"
+            ],
+            [
+                "5b47c0c1c61a0fe4"
+            ],
+            [
+                "aa3d46a048801da6"
+            ]
+        ]
+    },
+    {
+        "id": "9d39a78924b98fb8",
+        "type": "function",
+        "z": "55951030493c4ea8",
+        "g": "9e56fbeeb4f5c18c",
+        "name": "Avisar erro de arquivo",
+        "func": "// ERRO DE ARQUIVO\n// Mostra um aviso na tela se o CSV não puder ser gravado ou lido\n// (por exemplo, quando o arquivo está aberto no Excel).\nconst detalhe = (msg.error && msg.error.message) ? msg.error.message : 'erro desconhecido';\nreturn { payload: 'Não foi possível gravar ou ler o CSV: ' + detalhe };",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 510,
+        "y": 1170,
+        "wires": [
+            [
+                "d2fbb67902ee2a0f"
+            ]
+        ]
+    },
+    {
+        "id": "6c3383abd75acab7",
+        "type": "catch",
+        "z": "55951030493c4ea8",
+        "g": "9e56fbeeb4f5c18c",
+        "name": "Erro ao gravar ou ler o CSV",
+        "scope": [
+            "b9330cf248e01ebf",
+            "d048fbd363b0fa0b",
+            "8d82c984f1f0a94a",
+            "408af3efa19a87fd"
+        ],
+        "uncaught": false,
+        "x": 210,
+        "y": 1170,
+        "wires": [
+            [
+                "9d39a78924b98fb8"
+            ]
+        ]
+    },
+    {
+        "id": "d2fbb67902ee2a0f",
+        "type": "ui-notification",
+        "z": "55951030493c4ea8",
+        "g": "9e56fbeeb4f5c18c",
+        "ui": "6f0ecf8369828f48",
+        "position": "top right",
+        "colorDefault": false,
+        "color": "#d03b3b",
+        "displayTime": "15",
+        "showCountdown": true,
+        "outputs": 1,
+        "allowDismiss": true,
+        "dismissText": "Fechar",
+        "allowConfirm": false,
+        "confirmText": "Confirmar",
+        "raw": false,
+        "className": "",
+        "name": "Aviso de erro na tela",
+        "x": 790,
+        "y": 1170,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "e773e69b0d8ac82e",
+        "type": "comment",
+        "z": "e2e53e93fc7d2517",
+        "name": "Publica leituras de teste nos MESMOS tópicos do ESP32. Não use com o Wokwi ligado.",
+        "info": "As leituras do simulador passam pelo broker e também são gravadas no CSV.\n\nAntes da integração com o Wokwi, apague ou renomeie o CSV para começar um arquivo novo.",
+        "x": 390,
+        "y": 60,
+        "wires": []
+    },
+    {
+        "id": "862cfb7fd810e763",
+        "type": "inject",
+        "z": "e2e53e93fc7d2517",
+        "name": "1 leitura normal",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "{\"temperatura\":26.4,\"gas\":820}",
+        "payloadType": "json",
+        "x": 150,
+        "y": 140,
+        "wires": [
+            [
+                "682ef8f960765358"
+            ]
+        ]
+    },
+    {
+        "id": "c724293e4c02a381",
+        "type": "inject",
+        "z": "e2e53e93fc7d2517",
+        "name": "1 leitura com gás alto",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "{\"temperatura\":27.1,\"gas\":3350}",
+        "payloadType": "json",
+        "x": 170,
+        "y": 200,
+        "wires": [
+            [
+                "682ef8f960765358"
+            ]
+        ]
+    },
+    {
+        "id": "adb7b74538cf88f7",
+        "type": "inject",
+        "z": "e2e53e93fc7d2517",
+        "name": "1 leitura com gás e temperatura altos",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "{\"temperatura\":42.6,\"gas\":3400}",
+        "payloadType": "json",
+        "x": 220,
+        "y": 260,
+        "wires": [
+            [
+                "682ef8f960765358"
+            ]
+        ]
+    },
+    {
+        "id": "31d1118fed48748a",
+        "type": "inject",
+        "z": "e2e53e93fc7d2517",
+        "name": "Roteiro: os 5 testes do guia (22 leituras)",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 230,
+        "y": 360,
+        "wires": [
+            [
+                "1a7bb9c0a4e5312a"
+            ]
+        ]
+    },
+    {
+        "id": "1a7bb9c0a4e5312a",
+        "type": "function",
+        "z": "e2e53e93fc7d2517",
+        "name": "Montar o roteiro",
+        "func": "// SIMULADOR: roteiro com os 5 testes da página 5 do guia (22 leituras).\n// O nó seguinte solta uma leitura por segundo.\nconst roteiro = [\n    // Teste 01 - Normal: gás abaixo do limite\n    [27.4, 620], [27.6, 580], [27.9, 710], [28.1, 640], [28.0, 690],\n    // Teste 02 - Pico isolado: uma leitura alta seguida de baixas (o estado continua normal)\n    [28.3, 3350], [28.2, 650], [28.4, 700],\n    // Teste 03 - Alerta: três leituras altas seguidas, temperatura abaixo do limite\n    [31.2, 3200], [32.5, 3320], [33.1, 3410],\n    // Teste 04 - Prioridade alta: alerta ativo e temperatura acima do limite\n    [41.5, 3380], [42.3, 3450], [43.0, 3300],\n    // Temperatura cai, gás continua alto: volta de prioridade alta para alerta\n    [36.4, 3260], [35.8, 3180],\n    // Teste 05 - Retorno: três leituras com gás no limite ou abaixo\n    [33.0, 900], [31.5, 760], [30.2, 680],\n    // Segue normal\n    [29.6, 640], [29.1, 610], [28.8, 590]\n];\n\nreturn [roteiro.map(function (r) {\n    return { payload: { temperatura: r[0], gas: r[1] } };\n})];",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 510,
+        "y": 360,
+        "wires": [
+            [
+                "0a3956f90f8d5e1f"
+            ]
+        ]
+    },
+    {
+        "id": "0a3956f90f8d5e1f",
+        "type": "delay",
+        "z": "e2e53e93fc7d2517",
+        "name": "1 leitura por segundo",
+        "pauseType": "rate",
+        "timeout": "5",
+        "timeoutUnits": "seconds",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": false,
+        "allowrate": false,
+        "outputs": 1,
+        "x": 740,
+        "y": 360,
+        "wires": [
+            [
+                "682ef8f960765358"
+            ]
+        ]
+    },
+    {
+        "id": "682ef8f960765358",
+        "type": "function",
+        "z": "e2e53e93fc7d2517",
+        "name": "Simular o firmware",
+        "func": "// SIMULADOR: faz o mesmo que o firmware atual do Wokwi.\n// Publica a leitura no tópico de telemetria e, se temperatura > 40 ou gás > 3000,\n// publica também o aviso no tópico de alerta (é quando o ESP32 liga o LED e o buzzer).\nconst l = msg.payload;\n\nconst mensagens = [{\n    topic: 'parquecoco/ponto1/temperatura',\n    payload: { ponto: '1', temperatura: l.temperatura, gas: l.gas }\n}];\n\nif (l.temperatura > 40 || l.gas > 3000) {\n    mensagens.push({\n        topic: 'parquecoco/ponto1/alerta',\n        payload: 'Possivel foco de incendio - verificar ponto 1'\n    });\n}\n\nreturn [mensagens];",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 970,
+        "y": 200,
+        "wires": [
+            [
+                "ae13d1431ac1c2bf"
+            ]
+        ]
+    },
+    {
+        "id": "ae13d1431ac1c2bf",
+        "type": "mqtt out",
+        "z": "e2e53e93fc7d2517",
+        "name": "Publicar como o ESP32",
+        "topic": "",
+        "qos": "0",
+        "retain": "false",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
+        "broker": "a70d54fb3a7eb51a",
+        "x": 1210,
+        "y": 200,
+        "wires": []
+    },
+    {
+        "id": "33240955899e7881",
+        "type": "inject",
+        "z": "e2e53e93fc7d2517",
+        "name": "JSON de exemplo do guia (com ts e estado)",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "{\"ponto\":\"ponto01\",\"ts\":\"2026-11-20T21:00:00Z\",\"temp_c\":38.5,\"gas_adc\":2900,\"estado\":\"alerta\"}",
+        "payloadType": "json",
+        "x": 230,
+        "y": 460,
+        "wires": [
+            [
+                "81ecb56aa3d68d12"
+            ]
+        ]
+    },
+    {
+        "id": "81ecb56aa3d68d12",
+        "type": "mqtt out",
+        "z": "e2e53e93fc7d2517",
+        "name": "Publicar no tópico de telemetria",
+        "topic": "parquecoco/ponto1/temperatura",
+        "qos": "0",
+        "retain": "false",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
+        "broker": "a70d54fb3a7eb51a",
+        "x": 580,
+        "y": 460,
+        "wires": []
+    }
+]
